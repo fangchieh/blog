@@ -8,8 +8,8 @@ cache:
     directories:
         - node_modules # 设置缓存，传说会在构建的时候快一些
 
-before_install:
-    - npm install hexo-cli -g
+# before_install:
+    # - npm install hexo-cli -g
 
 install:
     - npm install # 安装hexo及插件
