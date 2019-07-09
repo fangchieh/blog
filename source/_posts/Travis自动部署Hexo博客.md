@@ -32,12 +32,10 @@ cache:
 
 # before_install:
 
-```
 # - npm install hexo-cli -g
-```
 
-#install:
-    #- npm install # 安装hexo及插件
+install:
+    - npm install # 安装hexo及插件
 
 script:
     - hexo clean # 清除
