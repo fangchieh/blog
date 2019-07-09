@@ -26,7 +26,7 @@ after_script:
     - git config user.email "358545276@qq.com"
     - git add .
     - git commit -am "Travis CI Auto Builder :$(date '+%Y-%m-%d %H:%M:%S' -d '+8 hour')" # 零时区，+8小时
-    - git push origin -f master
+    - git push -f origin master
     
 branches:
     only:
