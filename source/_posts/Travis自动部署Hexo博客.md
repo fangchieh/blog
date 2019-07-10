@@ -4,9 +4,9 @@ date: 2019-06-16 21:57:39
 tags: 博客
 ---
 
-#### 1.Github中创建存储Hexo博客项目源码的仓库（空仓）
+#### 1.<a href="https://github.com/">Github</a>中创建存储Hexo博客项目源码的仓库（空仓）
 
-#### 2.使用Github账户登录Travis
+#### 2.使用Github账户登录<a href="https://www.travis-ci.org/">Travis</a>
 
 #### 3.选择并激活存储Hexo博客项目源码的仓库
 
@@ -18,46 +18,49 @@ tags: 博客
 
 ![1560694061229](Travis自动部署Hexo博客/1560694061229.png)
 
-#### 6.在Hexo博客根目录下添加.travis.yml配置文件
+#### 6.在Hexo博客根目录下添加<a href="https://github.com/fangchieh/blog/blob/master/.travis.yml">.travis.yml</a>配置文件
 
-~~~yml
+```yml
 language: node_js # 设置语言
 
 node_js: stable # 设置相应版本
 
 cache:
-    apt: true
     directories:
-        - node_modules # 设置缓存，传说会在构建的时候快一些
+        - node_modules # 设置缓存，会在构建的时候快一些
 
 # before_install:
-
-# - npm install hexo-cli -g
+    # - npm install hexo-cli -g
 
 install:
     - npm install # 安装hexo及插件
+    #- npm install -g gulp 
 
 script:
     - hexo clean # 清除
     - hexo g # 生成
+  
 
 after_script:
-    - git clone ${GH_REF} pub_web # 因为我有两个仓库，先将发布服务的仓库clone下来，
-    - cp -rf public/* pub_web/ # 将源博客仓库(blog.git)目录下的public文件夹下的文件复制到发布服务的仓库(chenzhijun.github.com.git)中
-    - cd pub_web # 进入到git仓库
+
+    - cd public 
+    - git init
     - git config user.name "fangchieh"
     - git config user.email "358545276@qq.com"
     - git add .
-    - git commit -am "Travis CI Auto Builder :$(date '+%Y-%m-%d %H:%M:%S' -d '+8 hour')" # 零时区，+8小时
-    - git push origin master 
+    - git commit -am "Travis CI Auto Builder :$(date '+%Y-%m-%d %H:%M:%S' -d '+8 hour')"
+    - git push -f ${GH_REF} master  
+    - git push -f ${CODING} master
+    
     
 branches:
     only:
         - master #只监测master分支,这是我自己的博客，所以就用的master分支了。
 env:
     global:
-        - GH_REF: https://fangchieh:${travis}@github.com/fangchieh/fangchieh.github.io #设置GH_REF，注意更改yourname,travis:就是我们在travis-ci仓库中配置的环境变量
-~~~
+        - GH_REF: https://fangchieh:${travis}@github.com/fangchieh/fangchieh.github.io.git #设置GH_REF，注意更改yourname,travis:就是我们在travis-ci仓库中配置的环境变量
+        - CODING: https://fangchieh:${coding_travis}@git.dev.tencent.com/fangchieh/fangchieh.coding.me.git
+```
 
 #### 7.在本地提交.travis.yml更新后，将整个博客项目push到新建的GitHub空仓
 
