@@ -16,6 +16,8 @@ install:
 script:
     - hexo clean # 清除
     - hexo g # 生成
+    - git commit -am "Travis CI Auto Builder :$(date '+%Y-%m-%d %H:%M:%S' -d '+8 hour')"
+    - git push -f origin master
   
 
 after_script:
