@@ -17,7 +17,7 @@ script:
     - hexo clean # 清除
     - hexo g # 生成
     - git commit -am "Travis CI Auto Builder :$(date '+%Y-%m-%d %H:%M:%S' -d '+8 hour')"
-    - git push -f origin master
+    - git push -f ${BLOG} master
   
 
 after_script:
@@ -38,6 +38,7 @@ branches:
 env:
     global:
         - GH_REF: https://fangchieh:${travis}@github.com/fangchieh/fangchieh.github.io #设置GH_REF，注意更改yourname,travis:就是我们在travis-ci仓库中配置的环境变量
-        - CODING: https://fangchieh:${coding_travis}@git.dev.tencent.com/fangchieh/fangchieh.coding.me.git
+        - CODING: https://fangchieh:${coding_travis}@git.dev.tencent.com/fangchieh/fangchieh.coding.me
+        - BLOG: https://fangchieh:${travis}@github.com/fangchieh/blog
 
         
