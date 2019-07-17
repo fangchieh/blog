@@ -1,0 +1,4 @@
+、对于一个带用户名信息的URL字符串（比如：http://sysadmin:123456@10.15.15.89:8090/ demo/testWar.git），进行用户名信息过滤，最后输出不带用户名信息的URL（比如：http://10.15.15.89:8090/ demo/testWar.git）。
+2、使用数据库表实现一个主键递增的算法。 说明： 主键表信息： CREATE TABLE UNIQUE_TABLE ( NAME VARCHAR(255) NOT NULL, NEXT_KEY NUMERIC(19,0), PRIMARY KEY (NAME) ) comment='主键表'; mysql数据库连接信息如下： driverclass: com.mysql.jdbc.Driver connection URL: jdbc:mysql://127.0.0.1:3306/test username:root password:000000
+3、要求使用javax.servlet.Filter实现判断某个Token是否已经失效的功能。其中Token存放在Head的Authorization字段中，Token格式：{唯一标识}.{失效时间}。
+4、使用4个子线程，把一个4G的大文件，拆分成8个文件（每个500M）。其中每个线程处理1G。
